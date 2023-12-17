@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    {% include "quiz/navbar.html" %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--external import-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fcb269e343.js" crossorigin="anonymous"></script>
+    <style>       
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #101;
+        }
+        
+        .square{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .square i{
+            position: absolute;
+            inset: 0;
+            border: 1px solid #fff;
+            transition: 0.5s;
+        }
+        
+        .square i:nth-child(1){
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59% ;
+            animation: animate 6s linear infinite;
+        }
+        
+        .square i:nth-child(2){
+            border-radius: 41% 44% 56% 59% / 38% 62% 63% 37% ;
+            animation: animate 4s linear infinite;
+        }
+        
+        .square i:nth-child(3){
+            border-radius: 41% 44% 56% 59% / 38% 62% 63% 37% ;
+            animation: animate2 10s linear infinite;
+        }
+        
+        .square i:nth-child(4){
+            border-radius: 38% 62% 63% 37% / 42% 45% 57% 60% ;
+            animation: animate 12s linear infinite;
+        }
+        
+        .square i:nth-child(5){
+            border-radius: 42% 45% 57% 60% / 38% 62% 63% 37% ;
+            animation: animate2 8s linear infinite;
+        }
+        
+        .square:hover i{
+            border: 6px solid var(--clr);
+            filter: drop-shadow(0 0 20px var(--clr));
+        }
+        
+        @keyframes animate{
+            0%{
+                transform: rotate(0deg);
+            }
+        
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes animate2{
+            100%{
+                transform: rotate(0deg);
+            }
+        
+            0%{
+                transform: rotate(360deg);
+            }
+        }
+        
+        .login {
+            position: absolute;
+            width: 300px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .login h2{
+            font-size: 2em;
+            color: #fff;
+        }
+        
+        .login .inputbox{
+            position: relative;
+            width: 100%;
+        }
+        
+        .login .inputbox input{
+            position: relative;
+            width: 100%;
+            padding: 12px 20px;
+            background: transparent;
+            background: linear-gradient(45deg  , #28ff44 ,#72b4ff);
+            border: 2px solid #86ffe5;
+            font-size: 1.2em;
+            color: #fff;
+            box-shadow: none;
+            outline: none;
+        }
+        
+        .login .inputbox input[type = 'submit']{
+            width: 100%;
+            background-color: #0079ff;
+            background: linear-gradient(45deg  , #ff357a ,#fff172);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .login .inputbox input::placeholder{
+            color: rgba(2500, 255, 255, 1);
+        }
+        
+        .login .links{
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        
+        .login .links a{
+            color: #86ffe5;
+            text-decoration: none;
+        }
+      </style>
+      
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 bg-transparent center-div d-flex justify-content-center align-items-center">
+                <form class="box" method="post">
+                    {% csrf_token %}
+                    <div class="square">
+                        <i style="--clr:#00ff0a;"></i>
+                        <i style="--clr:#ff0057;"></i>
+                        <i style="--clr:#fffd44;"></i>
+                        <i style="--clr:#44e9ff;"></i>
+                        <i style="--clr:#ff41e6;"></i>
+                
+                        <div class="login" >
+                            <h2>Admin Login</h2>
+                            <div class="inputbox">
+                                {% render_field form.username class="form-control" placeholder="Username" %}
+                            </div>
+                            <div class="inputbox">
+                                {% render_field form.password class="form-control" placeholder="Password" %}
+                            </div>
+                            <div class="inputbox">
+                                <input type="submit" name="" value="Login">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <br><br><br><br>
+
+    {% include "quiz/footer.html" %}
+</body>
+</html>
